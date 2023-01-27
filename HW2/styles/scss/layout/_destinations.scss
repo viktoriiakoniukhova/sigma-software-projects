@@ -53,9 +53,6 @@
       @media screen and (max-width: $midsize) {
         flex-basis: 15em;
       }
-      @media screen and (max-width: $small) {
-        flex-basis: 100%;
-      }
 
       .destination-card__img {
         display: flex;

@@ -85,15 +85,24 @@
       width: 50%;
       height: 50%;
     }
+    @media screen and (max-width: $extra-small) {
+      flex-direction: column;
+      gap: 1em;
+    }
+
     .booking-card {
       position: relative;
 
       display: flex;
       flex-direction: column;
-      height: fit-content;
       @include white-container($p: 2em, $br: 26px);
 
+      @media screen and (max-width: $small) {
+        @include white-container($p: 1em, $br: 26px);
+      }
+
       & > img {
+        max-width: 100%;
         border: 1px solid #000000;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
         border-radius: 24px;
@@ -152,8 +161,27 @@
         left: 40%;
         width: 12em;
       }
+
+      @media screen and (max-width: $small) {
+        flex-direction: column;
+
+        top: 60%;
+        left: 40%;
+        width: 10em;
+      }
+
+      @media screen and (max-width: $extra-small) {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: calc(100% - 2em);
+
+        @include white-container($p: 1em);
+      }
+
       img {
-        height: fit-content;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
       }
       .booking-mini-card_content {

@@ -65,6 +65,10 @@ body {
     right: -3.5em;
     top: 20%;
     z-index: -1;
+
+    @media screen and (max-width: $extra-small) {
+      right: -1.5em;
+    }
   }
 }
 

@@ -7,6 +7,12 @@
   @media screen and (max-width: $medium) {
     margin: 2em 4em 0;
   }
+  @media screen and (max-width: $small) {
+    margin: 2em 2em 0;
+  }
+  @media screen and (max-width: $extra-small) {
+    margin: 2em 1em 0;
+  }
 
   .wrapper__main {
     display: flex;

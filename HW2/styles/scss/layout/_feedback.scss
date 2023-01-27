@@ -34,6 +34,10 @@
       @media screen and (max-width: $large) {
         @include volkhov($fw: 700, $fz: 4rem, $lh: 1.3);
       }
+
+      @media screen and (max-width: $medium) {
+        text-align: center;
+      }
     }
   }
   .wrapper__main_feedback_container {
