@@ -1,0 +1,20 @@
+.wrapper__main_brands {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  flex-wrap: wrap;
+  margin: $section_margin;
+  @media screen and(max-width: $small) {
+    margin: $section_margin-small;
+  }
+  & > img {
+    aspect-ratio: 3/2;
+    object-fit: contain;
+    filter: grayscale(100%);
+  }
+  & > img:hover {
+    @include white-container($p: 0, $g: 0, $br: 10px);
+    filter: grayscale(0%);
+    transition: all 0.5s;
+  }
+}

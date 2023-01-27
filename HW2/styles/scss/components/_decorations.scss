@@ -1,38 +1,3 @@
-@import "variables";
-
-@mixin decor__plane($x_coord: 0, $y_coord: 0) {
-  position: absolute;
-  top: $y_coord;
-  right: $x_coord;
-
-  @media screen and (max-width: $large) {
-    right: calc($x_coord/2);
-    img {
-      width: 70%;
-      height: auto;
-    }
-  }
-
-  @media screen and (max-width: $medium) {
-    right: calc($x_coord/3);
-    img {
-      width: 60%;
-      height: auto;
-    }
-  }
-  @media screen and (max-width: $small) {
-    right: calc($x_coord/10);
-    img {
-      width: 50%;
-      height: auto;
-    }
-  }
-
-  &:hover {
-    animation: plane-animation 3s linear 0s;
-  }
-}
-
 body {
   position: relative;
   .yellow-bulb {
@@ -73,6 +38,22 @@ body {
 
     @media screen and (max-width: $medium) {
       display: none;
+    }
+  }
+  .wrapper__main_newsletter_container {
+    .newsletter-circle-1 {
+      position: absolute;
+      left: 0;
+      bottom: -10em;
+      opacity: 0.1;
+    }
+
+    .newsletter-circle-2 {
+      position: absolute;
+      right: -5em;
+      top: -5em;
+      transform: rotate(270deg);
+      opacity: 0.1;
     }
   }
 }

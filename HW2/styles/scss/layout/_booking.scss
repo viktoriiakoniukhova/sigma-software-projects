@@ -1,0 +1,189 @@
+.wrapper__main_booking {
+  display: flex;
+  margin: $section_margin;
+  gap: 2em;
+  @media screen and(max-width: $small) {
+    margin: $section_margin-small;
+  }
+  @media screen and (max-width: $medium) {
+    flex-direction: column;
+  }
+  .wrapper__main_booking_steps {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    .wrapper__main_booking_steps_header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 1em;
+      margin: $header_margin;
+
+      @media screen and (max-width: $medium) {
+        align-items: center;
+      }
+      span {
+        @include poppins($fw: 600, $fz: 1.8rem, $lh: 1);
+        text-transform: uppercase;
+        color: #5e6282;
+
+        @media screen and (max-width: $large) {
+          @include poppins($fw: 600, $fz: 1.3rem, $lh: 1);
+        }
+      }
+      h3 {
+        @include volkhov;
+        text-transform: capitalize;
+        color: #14183e;
+
+        @media screen and (max-width: $large) {
+          @include volkhov($fw: 700, $fz: 4rem, $lh: 1.3);
+        }
+
+        @media screen and (max-width: $medium) {
+          text-align: center;
+        }
+      }
+    }
+    .wrapper__main_booking_steps_content {
+      display: flex;
+      flex-direction: column;
+      gap: 3em;
+      .booking-step {
+        display: flex;
+        gap: 1em;
+        .booking-step_content {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5em;
+          h5 {
+            @include poppins($fw: 700, $fz: 1.6rem, $lh: 1);
+            color: #5e6282;
+          }
+          p {
+            @include poppins($fw: 400, $fz: 1.6rem, $lh: 1);
+            color: #5e6282;
+          }
+        }
+      }
+    }
+  }
+  .wrapper__main_booking_container {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    .blur-background {
+      position: absolute;
+      top: 10%;
+      left: 30%;
+
+      display: flex;
+      width: 50%;
+      height: 50%;
+    }
+    .booking-card {
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      height: fit-content;
+      @include white-container($p: 2em, $br: 26px);
+
+      & > img {
+        border: 1px solid #000000;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        border-radius: 24px;
+      }
+      .booking-card_content {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        h5 {
+          @include poppins($fw: 500, $fz: 1.8rem, $lh: 1.25);
+          letter-spacing: 0.015em;
+          color: #080809;
+        }
+        .booking-card_content_date {
+          display: flex;
+          gap: 0.5em;
+          span {
+            @include poppins($fw: 500, $fz: 1.6rem, $lh: 1.25);
+            letter-spacing: -0.005em;
+            color: #84829a;
+          }
+        }
+        .booking-card_content_icons {
+          display: flex;
+          justify-content: flex-start;
+          gap: 1em;
+          margin: 1em 0;
+        }
+        .booking-card_content_footer {
+          display: flex;
+          justify-content: space-between;
+          .booking-card_content_footer_reserved {
+            display: flex;
+            flex-grow: 1;
+            gap: 1em;
+            p {
+              @include poppins($fw: 500, $fz: 1.6rem, $lh: 1.25);
+              letter-spacing: -0.02em;
+              color: #84829a;
+            }
+          }
+        }
+      }
+    }
+    .booking-mini-card {
+      position: absolute;
+      top: 55%;
+      left: 55%;
+
+      display: flex;
+      width: 15em;
+      @include white-container;
+
+      @media screen and (max-width: $medium) {
+        top: 75%;
+        left: 40%;
+        width: 12em;
+      }
+      img {
+        height: fit-content;
+        border-radius: 50%;
+      }
+      .booking-mini-card_content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        & > p {
+          @include poppins($fw: 500, $fz: 1.6rem, $lh: 1.25);
+          letter-spacing: -0.035em;
+          color: #84829a;
+        }
+        h5 {
+          @include poppins($fw: 500, $fz: 1.8rem, $lh: 1.25);
+          letter-spacing: -0.015em;
+          color: #080809;
+        }
+        .booking-mini-card_content_progress {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5em;
+          p {
+            @include poppins($fw: 500, $fz: 1.4rem, $lh: 1.25);
+            letter-spacing: -0.055em;
+            color: #080809;
+            span {
+              color: #8a79df;
+            }
+          }
+        }
+      }
+    }
+  }
+}

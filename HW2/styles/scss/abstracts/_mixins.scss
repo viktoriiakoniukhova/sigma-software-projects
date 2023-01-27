@@ -1,0 +1,77 @@
+@mixin google-sans($fw: 400, $fz: 1.7rem, $lh: 1.3) {
+  font-family: "Product Sans";
+  font-style: normal;
+  font-weight: $fw;
+  font-size: $fz;
+  line-height: $lh;
+}
+
+@mixin volkhov($fw: 700, $fz: 5rem, $lh: 1.3) {
+  font-family: "Volkhov";
+  font-style: normal;
+  font-weight: $fw;
+  font-size: $fz;
+  line-height: $lh;
+}
+
+@mixin poppins($fw: 600, $fz: 1.8rem, $lh: 1.5) {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: $fw;
+  font-size: $fz;
+  line-height: $lh;
+}
+
+@mixin montserrat($fw: 400, $fz: 1.4rem, $lh: 1) {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: $fw;
+  font-size: $fz;
+  line-height: $lh;
+}
+
+@mixin white-container($p: 1em, $g: 1em, $br: 18px) {
+  padding: $p;
+  gap: $g;
+  background: #ffffff;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02),
+    0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852),
+    0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481),
+    0px 20px 13px rgba(0, 0, 0, 0.01),
+    0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185),
+    0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+  border-radius: $br;
+}
+
+@mixin decor__plane($x_coord: 0, $y_coord: 0) {
+  position: absolute;
+  top: $y_coord;
+  right: $x_coord;
+
+  @media screen and (max-width: $large) {
+    right: calc($x_coord/2);
+    img {
+      width: 70%;
+      height: auto;
+    }
+  }
+
+  @media screen and (max-width: $medium) {
+    right: calc($x_coord/3);
+    img {
+      width: 60%;
+      height: auto;
+    }
+  }
+  @media screen and (max-width: $small) {
+    right: calc($x_coord/10);
+    img {
+      width: 50%;
+      height: auto;
+    }
+  }
+
+  &:hover {
+    animation: plane-animation 3s linear 0s;
+  }
+}

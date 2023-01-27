@@ -1,0 +1,45 @@
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.btn_signup {
+  border: 1px solid #212832;
+  border-radius: 5px;
+  padding: 0.2em 1em;
+  background-color: transparent;
+}
+
+.btn_orange {
+  display: flex;
+  align-items: center;
+  max-width: fit-content;
+  padding: 0 1em;
+
+  background: #f1a501;
+  box-shadow: 0 20px 35px rgba(241, 165, 1, 0.15);
+  border-radius: 10px;
+}
+
+.btn_play {
+  display: flex;
+  padding: 1em;
+
+  background: #df6951;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 15px 30px rgba(223, 105, 81, 0.3);
+  color: #ffffff;
+}
+
+.btn-email {
+  display: flex;
+  justify-content: center;
+  padding: 1em 2em;
+
+  background: linear-gradient(180deg, #ff946d 0%, #ff7d68 100%);
+  border-radius: 10px;
+  border: none;
+  color: #ffffff;
+}

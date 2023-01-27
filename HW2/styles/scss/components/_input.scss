@@ -1,0 +1,23 @@
+.input-email_label {
+  position: relative;
+}
+
+.input-email_label:before {
+  content: "";
+  position: absolute;
+  left: 1em;
+  top: 0;
+  bottom: 0;
+  width: 1em;
+  background: url("/assets/newsletter-email.svg") center / contain no-repeat;
+}
+
+.input-email {
+  padding: 1em 3em;
+
+  background: #ffffff;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  vertical-align: center;
+}
