@@ -32,8 +32,15 @@
         text-decoration: none;
         @include google-sans;
         color: #212832;
-      }
 
+        transition: all ease-out 0.5s;
+
+        &:hover {
+          transition: all ease-in 0.5s;
+          transform: scale(1.4);
+          color: #df6951;
+        }
+      }
       @media screen and (max-width: $medium) {
         display: none;
       }
@@ -49,6 +56,10 @@
         @include google-sans;
         color: #212832;
         cursor: pointer;
+
+        &:hover {
+          color: #df6951;
+        }
       }
 
       select {

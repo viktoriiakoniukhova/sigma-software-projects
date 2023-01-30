@@ -917,6 +917,12 @@ html body {
   font-size: 1.7rem;
   line-height: 1.3;
   color: #212832;
+  transition: all ease-out 0.5s;
+}
+.wrapper__header .wrapper__header_content .wrapper__header_content_nav a:hover {
+  transition: all ease-in 0.5s;
+  transform: scale(1.4);
+  color: #df6951;
 }
 @media screen and (max-width: 950px) {
   .wrapper__header .wrapper__header_content .wrapper__header_content_nav {
@@ -938,6 +944,11 @@ html body {
   line-height: 1.3;
   color: #212832;
   cursor: pointer;
+}
+.wrapper__header .wrapper__header_content .wrapper__header_content_sign p:hover,
+.wrapper__header .wrapper__header_content .wrapper__header_content_sign .btn_signup:hover,
+.wrapper__header .wrapper__header_content .wrapper__header_content_sign select:hover {
+  color: #df6951;
 }
 .wrapper__header .wrapper__header_content .wrapper__header_content_sign select {
   border: none;
@@ -1235,6 +1246,9 @@ button {
   border-radius: 5px;
   padding: 0.2em 1em;
   background-color: transparent;
+}
+.btn_signup:hover {
+  border-color: #df6951;
 }
 
 .btn_orange {

@@ -9,6 +9,9 @@ button {
   border-radius: 5px;
   padding: 0.2em 1em;
   background-color: transparent;
+  &:hover {
+    border-color: #df6951;
+  }
 }
 
 .btn_orange {
