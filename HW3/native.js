@@ -115,3 +115,130 @@ function calculateDifference(obj, insurenceNum) {
 
 console.log(calculateDifference({ skate: 200, painting: 200, shoes: 1 }, 400));
 console.log(calculateDifference({ "baseball bat": 20 }, 5));
+
+// Task 9
+
+function doesBrickFit(a, b, c, w, h) {
+  if (
+    typeof a === "number" &&
+    typeof b === "number" &&
+    typeof c === "number" &&
+    typeof w === "number" &&
+    typeof h === "number"
+  ) {
+    return (a <= h && b <= w) || (a <= h && c <= w);
+  } else return "Wrong data passed";
+}
+
+console.log(doesBrickFit(1, 1, 1, 1, 1));
+console.log(doesBrickFit(1, 2, 1, 1, 1));
+console.log(doesBrickFit(1, 2, 2, 1, 1));
+
+// Task 10
+
+function splitString(str) {
+  if (typeof str === "string") {
+    return str.split("\\").pop().split(".").shift();
+  } else return "Wrong data passed";
+}
+
+console.log(splitString("c:\\WebServers\\home\\testsite\\www\\myfile.txt"));
+
+// Task 11
+
+function areStringsRotated(str1, str2) {
+  if (typeof str1 === "string" && typeof str2 === "string") {
+    const concatStr1 = str1 + str1;
+    return str1.length == str2.length && concatStr1.indexOf(str2) != -1;
+  } else return "Wrong data passed";
+}
+
+// Task 12
+
+function recomposeArr(a, aSize, b, c) {
+  if (
+    a instanceof Array &&
+    b instanceof Array &&
+    c instanceof Array &&
+    typeof aSize === "number"
+  ) {
+    for (let i = 0; i < aSize / 2; i++) {
+      const res = findMinDiffElems(a, a.length);
+
+      b.push(res[0]);
+      c.push(res[1]);
+
+      if (a[i] === res[0]) {
+        a.splice(i, 1);
+      }
+      if (a[i] === res[1]) {
+        a.splice(i, 1);
+      }
+    }
+    return [b, c];
+  } else return "Wrong data passed";
+}
+
+function findMinDiffElems(arr, n) {
+  let diff = Number.MAX_VALUE;
+  let elem1 = Number.MAX_VALUE,
+    elem2 = Number.MAX_VALUE;
+
+  for (let i = 0; i < n - 1; i++)
+    for (let j = i + 1; j < n; j++)
+      if (Math.abs(arr[i] - arr[j]) < diff) {
+        diff = Math.abs(arr[i] - arr[j]);
+        [elem1, elem2] = [arr[i], arr[j]];
+      }
+  return [elem1, elem2].sort();
+}
+
+console.log(recomposeArr([0, 1, 3, 5, 6, -2], 6, [], []));
+
+// Task 13
+
+function recomposeStr(str, linksForbidden, contactsForbidden) {
+  if (
+    typeof str === "string" &&
+    typeof linksForbidden === "string" &&
+    typeof contactsForbidden === "string"
+  ) {
+    let result = "";
+    let words = str.split(" ");
+
+    for (let i = 0; i < words.length; i++) {
+      let word = words[i];
+
+      if (i === 0) result += word;
+      else result += word.toLowerCase().replace(/^./, word[0]);
+
+      if (word.match(/^https?:\/\/\S+$/i)) result += linksForbidden;
+      else if (word.match(/\S+@\S+\.\S+/i)) result += contactsForbidden;
+
+      if (word.match(/^\d{4,}$/)) {
+        result = result.replace(word, "");
+      }
+
+      result += " ";
+    }
+
+    if (result.length > str.length) {
+      let timer = setInterval(() => {
+        let helpMessage = confirm("Чи потрібна Вам допомога?");
+        if (helpMessage) {
+          alert("Допомога на підході!");
+          clearInterval(timer);
+        }
+      }, 5000);
+    }
+
+    return result;
+  } else return "Wrong data passed";
+}
+
+const str =
+  "Some text with links: http://example.com and https://www.google.com and an email: john.doe@example.com";
+const linksForbidden = "[посилання заборонені]";
+const contactsForbidden = "[контакти заборонені]";
+
+console.log(recomposeStr(str, linksForbidden, contactsForbidden));
