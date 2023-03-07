@@ -204,27 +204,18 @@ function recomposeStr(str, linksForbidden, contactsForbidden) {
     typeof contactsForbidden === "string"
   ) {
     let result = "";
-    let words = str.split(" ");
+    const words = str.split(" ");
 
-    for (let i = 0; i < words.length; i++) {
-      let word = words[i];
-
-      if (i === 0) result += word;
-      else result += word.toLowerCase().replace(/^./, word[0]);
-
-      if (word.match(/^https?:\/\/\S+$/i)) result += linksForbidden;
-      else if (word.match(/\S+@\S+\.\S+/i)) result += contactsForbidden;
-
-      if (word.match(/^\d{4,}$/)) {
-        result = result.replace(word, "");
-      }
-
-      result += " ";
-    }
+    words.forEach((word, idx) => {
+      if (idx === 0) result += word[0].toUpperCase() + word.slice(1) + " ";
+      else if (word.match(/^https?:\/\/\S+$/i)) result += linksForbidden + " ";
+      else if (word.match(/\S+@\S+\.\S+/i)) result += contactsForbidden + " ";
+      else if (!word.match(/^\d{4,}$/)) result += word.toLowerCase() + " ";
+    });
 
     if (result.length > str.length) {
-      let timer = setInterval(() => {
-        let helpMessage = confirm("Чи потрібна Вам допомога?");
+      const timer = setInterval(() => {
+        const helpMessage = confirm("Чи потрібна Вам допомога?");
         if (helpMessage) {
           alert("Допомога на підході!");
           clearInterval(timer);
@@ -237,8 +228,63 @@ function recomposeStr(str, linksForbidden, contactsForbidden) {
 }
 
 const str =
-  "Some text with links: http://example.com and https://www.google.com and an email: john.doe@example.com";
+  "Time 1234 123 text with LINKS: http://example.com and https://www.google.com and an email: john.doe@example.com";
 const linksForbidden = "[посилання заборонені]";
 const contactsForbidden = "[контакти заборонені]";
 
 console.log(recomposeStr(str, linksForbidden, contactsForbidden));
+
+// Task 16
+
+function generateNumber(start) {
+  return Math.floor(Math.random() * start);
+}
+
+function generatePassword() {
+  const lowercase = "abcdefghijklmnopqrstuvwxyz";
+  const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const numbers = "0123456789";
+
+  let password = "";
+  let prevNumber = false;
+
+  const length = Math.floor(Math.random() * (20 - 6 + 1) + 6);
+
+  for (let i = 0; i < 2; i++) {
+    password += uppercase[generateNumber(uppercase.length)];
+  }
+
+  let numCount = 0;
+  while (numCount < 5) {
+    const num = numbers[generateNumber(numbers.length)];
+    if (prevNumber && num === password[password.length - 1]) {
+      continue;
+    }
+    password += num;
+    numCount++;
+    prevNumber = true;
+  }
+
+  const i = generateNumber(password.length);
+  const left = password.slice(0, i);
+  const right = password.slice(i + 1);
+  password = left + "_" + right;
+
+  while (password.length < length) {
+    const charSet = generateNumber(3);
+    switch (charSet) {
+      case 0:
+        password += lowercase[generateNumber(lowercase.length)];
+        break;
+      case 1:
+        password += uppercase[generateNumber(uppercase.length)];
+        break;
+      case 2:
+        password += numbers[generateNumber(numbers.length)];
+        break;
+    }
+    prevNumber = false;
+  }
+
+  return password;
+}
