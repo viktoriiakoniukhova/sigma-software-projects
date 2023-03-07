@@ -288,3 +288,41 @@ function generatePassword() {
 
   return password;
 }
+
+// Task 17
+
+function rearrangeArray(arr) {
+  if (arr instanceof Array) {
+    const sortedArr = quickSort(arr);
+    const resultArr = Array(arr.length);
+    let i = 0;
+
+    sortedArr.forEach((elem, idx) => {
+      if (idx % 2 === 0) resultArr.splice(i, 1, elem);
+      else {
+        resultArr.splice(arr.length - 1 - i, 1, elem);
+        i++;
+      }
+    });
+    return resultArr;
+  } else return "Wrong data type passed";
+}
+
+function quickSort(arr) {
+  if (arr.length <= 1) return arr;
+
+  const pivotIndex = Math.floor(arr.length / 2);
+  const pivot = arr[pivotIndex];
+
+  const left = [];
+  const right = [];
+
+  arr.forEach((elem, idx) => {
+    if (elem < pivot) left.push(elem);
+    else if (elem > pivot) right.push(elem);
+  });
+
+  return [...quickSort(left), pivot, ...quickSort(right)];
+}
+
+console.log(rearrangeArray([0, 5, 7, 2, 8, 3]));
