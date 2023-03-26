@@ -1,0 +1,96 @@
+.wrapper__main_services {
+  display: flex;
+  flex-direction: column;
+  margin: $section_margin;
+  @media screen and (max-width: $small) {
+    margin: $section_margin-small;
+  }
+  .wrapper__main_services_header {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: $header_margin;
+    span {
+      @include google-sans($fw: 600, $fz: 2rem, $lh: 1.3);
+      text-transform: uppercase;
+      color: #646464;
+
+      @media screen and (max-width: $large) {
+        @include google-sans($fw: 600, $fz: 1.5rem, $lh: 1.3);
+      }
+    }
+    h1 {
+      @include poppins($fw: 600, $fz: 4.8rem, $lh: 1.05);
+      color: #212121;
+
+      @media screen and (max-width: $large) {
+        @include poppins($fw: 600, $fz: 2.8rem, $lh: 1.25);
+      }
+      @media screen and (max-width: $medium) {
+        @include poppins($fw: 600, $fz: 1.8rem, $lh: 1.25);
+      }
+    }
+  }
+  .wrapper__main_services_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+    .wrapper__main_services_content_nav-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2em;
+      padding: 0 1em;
+      button {
+        @include google-sans($fw: 700, $fz: 1.6rem, $lh: 1);
+      }
+    }
+    .wrapper__main_services_content_container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3em;
+
+      .wrapper__main_services_content_items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 3em;
+
+        .wrapper__main_services_content_items_item {
+          display: flex;
+          justify-content: space-around;
+          flex: 0 1 25%;
+          gap: 1em;
+
+          @media screen and (max-width: $large) {
+            flex-basis: 30%;
+          }
+          @media screen and (max-width: $midsize) {
+            flex-basis: 100%;
+          }
+          @include leaf-container($p: 1em, $bgc: #ffffff, $r: 3em);
+
+          &:hover {
+            background-color: #caa892;
+            color: #ffffff;
+          }
+
+          img {
+            width: 25px;
+            height: 25px;
+            padding-top: 0.5em;
+          }
+          section {
+            h5 {
+              @include google-sans($fw: 700, $fz: 2.4rem, $lh: 1.5);
+            }
+            p {
+              @include google-sans($fw: 400, $fz: 1.8rem, $lh: 1.5);
+            }
+          }
+        }
+      }
+    }
+  }
+}
