@@ -1,25 +1,91 @@
-import data from "./data.json" assert { type: "json" };
+// Full Page Loader, Fetch Data after Loading, Change slider design if device is small
+const loader = document.getElementById("loader-full-page");
+const wrapper = document.getElementById("wrapper");
 
-// const url =
-//   "https://raw.githubusercontent.com/viktoriiakoniukhova/viktoriiakoniukhova.github.io/main/projects.json";
+const loaderServices = document.getElementById("loader-services");
+const services = document.getElementById("services-content");
 
-// const request = new XMLHttpRequest();
-// request.open("GET", url, false);
-// request.send(null);
+window.addEventListener("load", function () {
+  setTimeout(() => {
+    loader.style.display = "none";
+    wrapper.style.display = "flex";
+    fetchRickMorty();
 
-// const data = JSON.parse(request.responseText);
+    loaderServices.style.display = "none";
+    services.style.display = "flex";
+    fetchServices();
+
+    const swiperElement = document.querySelector(
+      "#testimonials-content div.swiper"
+    );
+    const swiperSmallElement = document.querySelector(
+      "#testimonials-content div.swiper.swiper-small"
+    );
+    if (document.documentElement.clientWidth < 800) {
+      swiperElement.style.display = "none";
+      swiperSmallElement.style.display = "flex";
+    } else {
+      swiperSmallElement.style.display = "none";
+      swiperElement.style.display = "flex";
+    }
+  }, 1 * 1000);
+});
+
+// API fetch Rick n Morty
+const loaderRicknMorty = document.getElementById("loader-rick-n-morty");
+const card = document.getElementById("character-card");
+
+function fetchRickMorty() {
+  const MAX = 826;
+  const MIN = 1;
+  const characterID = Math.floor(Math.random() * (MAX - MIN) + MIN);
+  fetch(`https://rickandmortyapi.com/api/character/${characterID}`)
+    .then((respond) => respond.json())
+    .then((data) => displayData(data))
+    .catch(() => {});
+}
+
+function displayData(data) {
+  setTimeout(() => {
+    loaderRicknMorty.style.display = "none";
+    card.style.display = "flex";
+  }, 1000);
+  const imgURL = document.querySelector("#character-card img");
+  imgURL.src = data.image;
+  const infoP = document.querySelectorAll("#character-card p");
+  infoP[0].innerHTML += data.name;
+  infoP[1].innerHTML += data.status;
+  infoP[2].innerHTML += data.species;
+  infoP[3].innerHTML += data.gender;
+}
+
+// JSON services fetch
+function fetchServices() {
+  fetch(
+    `https://raw.githubusercontent.com/viktoriiakoniukhova/sigma-software-projects/main/HW4/data.json`
+  )
+    .then((respond) => respond.json())
+    .then((data) => displayServices(data))
+    .catch(() => {});
+}
+
+function displayServices(data) {
+  setTimeout(() => {
+    loaderServices.style.display = "none";
+    services.style.display = "flex";
+  }, 1000);
+
+  data.categories.forEach(({ id, title, imgURL, imgHoverURL, items }) =>
+    createCategory(id, title, imgURL, imgHoverURL, items)
+  );
+
+  btnAll.click();
+  btnAll.classList.add("all-active");
+}
+
 const servicesNavPanel = document.getElementById("nav-panel");
 const servicesContainer = document.getElementById("services-container");
 const btnAll = document.getElementById("all");
-
-document.addEventListener("DOMContentLoaded", () => {
-  btnAll.click();
-  btnAll.classList.add("all-active");
-});
-
-data.categories.forEach(({ id, title, imgURL, imgHoverURL, items }) =>
-  createCategory(id, title, imgURL, imgHoverURL, items)
-);
 
 servicesNavPanel.addEventListener("click", (e) => {
   if (e.target === e.currentTarget) return;
@@ -93,46 +159,6 @@ function createItem(title, desc, imgURL, imgHoverURL) {
   return item;
 }
 
-// Full Page Loader, Fetch Data after Loading, Change slider design if device is small
-const loader = document.getElementById("loader-full-page");
-const wrapper = document.getElementById("wrapper");
-
-window.addEventListener("load", function () {
-  setTimeout(() => {
-    loader.style.display = "none";
-    wrapper.style.display = "flex";
-    fetchRickMorty();
-
-    const swiperElement = document.querySelector(
-      "#testimonials-content div.swiper"
-    );
-    const swiperSmallElement = document.querySelector(
-      "#testimonials-content div.swiper.swiper-small"
-    );
-    if (document.documentElement.clientWidth < 800) {
-      swiperElement.style.display = "none";
-      swiperSmallElement.style.display = "flex";
-    } else {
-      swiperSmallElement.style.display = "none";
-      swiperElement.style.display = "flex";
-    }
-  }, 1 * 1000);
-});
-
-// Activity interval tracker
-
-// const interval = setInterval(function () {
-//   const answer = confirm("Ви ще тут?");
-//   const closeTimeout = setTimeout(() => relocate(), 30 * 1000);
-//   if (answer) {
-//     clearTimeout(closeTimeout);
-//   }
-// }, 60 * 1000);
-
-// document.addEventListener("mousemove", function () {
-//   clearInterval(interval);
-// });
-
 // Swiper
 const swiper = new Swiper(".swiper", {
   // Optional parameters
@@ -165,6 +191,7 @@ const swiperSmall = new Swiper(".swiper.swiper-small", {
   },
 });
 
+// Swiper change based on resolution
 window.addEventListener("resize", () => {
   const swiperElement = document.querySelector(
     "#testimonials-content div.swiper"
@@ -181,42 +208,7 @@ window.addEventListener("resize", () => {
   }
 });
 
-// Function to close window
-function relocate() {
-  window.location.replace("http://google.com");
-  return false;
-}
-
-// API fetch
-const loaderRicknMorty = document.getElementById("loader-rick-n-morty");
-const card = document.getElementById("character-card");
-
-function fetchRickMorty() {
-  const MAX = 826;
-  const MIN = 1;
-  const characterID = Math.floor(Math.random() * (MAX - MIN) + MIN);
-  fetch(`https://rickandmortyapi.com/api/character/${characterID}`)
-    .then((respond) => respond.json())
-    .then((data) => displayData(data))
-    .catch(() => {});
-}
-
-function displayData(data) {
-  setTimeout(() => {
-    loaderRicknMorty.style.display = "none";
-    card.style.display = "flex";
-  }, 1000);
-  const imgURL = document.querySelector("#character-card img");
-  imgURL.src = data.image;
-  const infoP = document.querySelectorAll("#character-card p");
-  infoP[0].innerHTML += data.name;
-  infoP[1].innerHTML += data.status;
-  infoP[2].innerHTML += data.species;
-  infoP[3].innerHTML += data.gender;
-}
-
 // Navbar scrollbar
-
 document.addEventListener("scroll", () => {
   const winScroll =
     document.body.scrollTop || document.documentElement.scrollTop;
@@ -228,7 +220,13 @@ document.addEventListener("scroll", () => {
   progressBar.style.width = scrolled + "%";
 });
 
-// News appearance animation
+// Function to "close" window
+function relocate() {
+  window.location.replace("http://google.com");
+  return false;
+}
+
+// Blog reveal animation
 
 document.addEventListener("scroll", () => {
   const reveals = document.querySelectorAll(".reveal");
@@ -245,7 +243,8 @@ document.addEventListener("scroll", () => {
 // Fireworks animation
 const fireworks = document.getElementById("fireworks");
 fireworks.style.display = "none";
-// Newsletter validation
+
+// Newsletter form validation
 
 const nameRegex = /^[A-Z][a-z]*$/;
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -335,3 +334,17 @@ function showError(errorField) {
       "Має відповідати загальним правилам валідації пошти";
   }
 }
+
+// Activity interval tracker
+
+// const interval = setInterval(function () {
+//   const answer = confirm("Ви ще тут?");
+//   const closeTimeout = setTimeout(() => relocate(), 30 * 1000);
+//   if (answer) {
+//     clearTimeout(closeTimeout);
+//   }
+// }, 60 * 1000);
+
+// document.addEventListener("mousemove", function () {
+//   clearInterval(interval);
+// });
