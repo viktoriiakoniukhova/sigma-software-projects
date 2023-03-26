@@ -335,6 +335,12 @@ function showError(errorField) {
   }
 }
 
+// Set year in footer
+const footerYear = document.getElementById("footer-year");
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+footerYear.innerHTML = currentYear;
+
 // Activity interval tracker
 
 // const interval = setInterval(function () {
