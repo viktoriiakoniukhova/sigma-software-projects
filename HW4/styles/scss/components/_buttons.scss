@@ -1,5 +1,5 @@
 button {
-  display: flex;
+  @include flex();
   text-align: center;
   cursor: pointer;
   outline: none;
@@ -23,7 +23,6 @@ button:disabled {
   border-radius: 1em 0;
   color: #ffffff;
   background-color: #caa892;
-
   &:hover {
     color: #caa892;
     background-color: #ffffff;
@@ -36,7 +35,6 @@ button:disabled {
   color: #ffffff;
   background: #37806b;
   text-transform: uppercase;
-
   &:hover {
     color: #37806b;
     background-color: #ffffff;
@@ -49,7 +47,6 @@ button:disabled {
   color: #ffffff;
   background: #37806b;
   text-transform: uppercase;
-
   &:hover,
   &:active,
   &:focus {
@@ -61,7 +58,6 @@ button:disabled {
 .all-active {
   color: #37806b;
   background-color: #ffffff;
-
   &:hover,
   &:active,
   &:focus {
@@ -71,12 +67,8 @@ button:disabled {
 }
 
 .all-items {
-  display: flex;
-  flex-wrap: wrap;
+  @include flex($w: wrap, $j-content: center, $g: 3em);
   flex: 0 1 25%;
-  justify-content: center;
-  gap: 3em;
-
   @media screen and (max-width: $large) {
     flex-basis: 30%;
   }
@@ -85,16 +77,12 @@ button:disabled {
   }
 }
 .all-items-flex {
-  display: flex;
-  justify-content: space-around;
-  gap: 1em;
+  @include flex($j-content: space-around, $g: 1em);
   @include leaf-container($p: 1em, $bgc: #ffffff, $r: 3em);
-
   &:hover {
     background-color: #caa892;
     color: #ffffff;
   }
-
   img {
     width: 25px;
     height: 25px;

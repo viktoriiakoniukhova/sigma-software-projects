@@ -11,14 +11,12 @@
   .decor-border-img {
     position: absolute;
     z-index: -1;
-
     @include leaf-container-border();
   }
 }
 
 .shifted {
   margin-top: 4em;
-
   @media screen and (max-width: $large) {
     margin-top: 3em;
   }
@@ -33,8 +31,6 @@
 .reverse {
   transform: matrix(1, 0, 0, -1, 0, 0);
 }
-
-// fff
 
 .wrapper__main_services {
   position: relative;
@@ -69,13 +65,10 @@
 .grey-layer {
   position: absolute;
   background-color: #ebebeb;
-
   left: -8em;
   width: 100vw;
   height: 100%;
-
   z-index: -1;
-
   @media screen and (max-width: $medium) {
     left: -4em;
   }
