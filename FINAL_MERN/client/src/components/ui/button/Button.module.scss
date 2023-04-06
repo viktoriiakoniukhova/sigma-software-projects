@@ -9,6 +9,8 @@ button {
   gap: 0.2em;
   border-radius: 1.6rem;
   padding: 1em;
+  transition: all 0.25s ease-in;
+
   @include mx.roboto($fw: 700, $fz: 2rem, $lh: 1.2);
   @include mx.lg {
     font-size: 1.6rem;
