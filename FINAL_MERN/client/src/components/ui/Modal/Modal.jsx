@@ -25,7 +25,11 @@ export default function Modal({ isShowing, hide, productData }) {
 
   React.useEffect(() => {
     const checkIfClickedOutside = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) {
+      if (
+        ref.current &&
+        !ref.current.contains(e.target) &&
+        !e.target.className.includes("Product")
+      ) {
         hide();
       }
     };
@@ -33,7 +37,7 @@ export default function Modal({ isShowing, hide, productData }) {
     return () => {
       document.removeEventListener("click", checkIfClickedOutside);
     };
-  }, []);
+  }, [hide]);
 
   const hasDiscount = discount.percent !== 0;
   const [info, setInfo] = React.useState("desc"); //Radiobutton
@@ -85,8 +89,8 @@ export default function Modal({ isShowing, hide, productData }) {
         ? ReactDOM.createPortal(
             <React.Fragment>
               <div className={styles.modalOverlay} />
-              <div className={styles.modalWrapper} tabIndex={-1} role="dialog">
-                <div className={styles.modal} ref={ref}>
+              <div className={styles.modalWrapper} ref={ref}>
+                <div className={styles.modal}>
                   <div className={styles.modalHeader}>
                     <Button
                       type="darkBlue"
