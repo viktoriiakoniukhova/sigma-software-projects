@@ -1,0 +1,22 @@
+@use "../../variables" as vars;
+@use "../../mixins" as mx;
+
+.thanksWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3em;
+  padding: 10em 0;
+  @include mx.h2($koef: 1.4);
+  h2 {
+    padding: 0 2em;
+  }
+  @include mx.imgCont;
+  @include mx.md {
+    padding: 5em 0;
+    .imgContainer {
+      min-height: 20em;
+    }
+  }
+}

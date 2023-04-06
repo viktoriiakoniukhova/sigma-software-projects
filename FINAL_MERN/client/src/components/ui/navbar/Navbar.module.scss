@@ -1,0 +1,172 @@
+@use "../../../variables" as vars;
+@use "../../../mixins" as mx;
+
+.navWrapper {
+  position: sticky;
+  background-color: #ffffff;
+  padding: 2em 3em;
+  top: 0;
+  z-index: 15;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2em;
+  color: vars.$dark_blue;
+  @include mx.sm {
+    justify-content: center;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+    @include mx.roboto($fw: 700, $fz: 3.8rem, $lh: 1.2);
+    @include mx.xl {
+      @include mx.roboto($fw: 700, $fz: 3rem, $lh: 1.2);
+    }
+    @include mx.sm {
+      @include mx.roboto($fw: 700, $fz: 2.5rem, $lh: 1.2);
+    }
+    img {
+      max-width: 100%;
+    }
+  }
+  .navLinks {
+    display: flex;
+    align-items: center;
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      a {
+        @include mx.roboto($fw: 700, $fz: 2rem, $lh: 1.2);
+        text-transform: capitalize;
+      }
+    }
+  }
+  .sideMenu {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    .search {
+      display: flex;
+      align-items: center;
+      background-color: vars.$light_grey;
+      border-radius: 3.6rem;
+      padding: 0.3em;
+      input {
+        background-color: vars.$light_grey;
+        border-radius: 3.6rem;
+        border: none;
+        outline: none;
+        padding: 0.5em 1em;
+      }
+      .searchIcon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.6em;
+        background-color: vars.$green;
+        border-radius: 3.6rem;
+        img {
+          width: 22px;
+          height: 21px;
+        }
+      }
+    }
+    .cart {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      border: 1px solid vars.$light_grey;
+      border-radius: 3.6rem;
+      padding: 0.3em;
+      padding-right: 1em;
+      .cartIcon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.6em;
+        background-color: vars.$dark_blue;
+        border-radius: 3.6rem;
+        img {
+          width: 22px;
+          height: 21px;
+        }
+      }
+      h5 {
+        @include mx.roboto($fw: 600, $fz: 1.8rem, $lh: 1.2);
+      }
+    }
+  }
+  .burgerMenu {
+    position: relative;
+    display: none;
+    margin-left: 1rem;
+    .menu {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      margin-top: 1rem;
+      padding: 2rem;
+      text-align: end;
+      background: vars.$green;
+      border-radius: 3.6rem;
+      box-shadow: 0 0 5 rgba(0, 0, 0, 0.2);
+      min-width: 10em;
+      @include mx.sm {
+        top: 40px;
+        right: -20px;
+        padding: 1.5rem;
+      }
+    }
+  }
+
+  //Burger menu show
+  @include mx.lg {
+    .navLinks {
+      display: none;
+    }
+    .burgerMenu {
+      display: flex;
+      .navLinks {
+        display: flex;
+        nav {
+          flex-direction: column;
+        }
+      }
+      .sideMenu {
+        display: none;
+      }
+    }
+  }
+
+  @include mx.md {
+    .sideMenu {
+      display: none;
+    }
+    .burgerMenu {
+      .menu {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 1em;
+        .navLinks {
+          display: flex;
+          nav {
+            flex-direction: column;
+          }
+        }
+        .sideMenu {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+        }
+      }
+    }
+  }
+}

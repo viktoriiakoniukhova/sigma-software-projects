@@ -1,0 +1,38 @@
+@use "../../../variables" as vars;
+@use "../../../mixins" as mx;
+
+.categoriesWrapper {
+  display: flex;
+  justify-content: space-around;
+  gap: 2em;
+  background-color: vars.$light_green;
+  padding: 5em 2em;
+  @include mx.md {
+    flex-direction: column;
+    padding: 5em 10em;
+  }
+  @include mx.sm {
+    flex-direction: column;
+    padding: 5em 2em;
+  }
+}
+
+.categoryCard {
+  display: flex;
+  position: relative;
+  @include mx.imgCont;
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: #fff;
+    padding: 2em 4em;
+    border-radius: 3rem;
+    @include mx.h3;
+    @include mx.md {
+      padding: 1em 2em;
+    }
+  }
+}

@@ -1,0 +1,105 @@
+@use "../../../variables" as vars;
+@use "../../../mixins" as mx;
+
+.productCardWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 2em;
+  @include mx.md {
+    flex-direction: column;
+    gap: 2em;
+  }
+  @include mx.sm {
+    padding: 2em 0;
+  }
+  .productCard {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    gap: 2em;
+    @include mx.md {
+      flex-direction: column;
+    }
+    & > .imgContainer {
+      display: flex;
+      align-items: flex-start;
+      min-width: 12em;
+      min-height: 12em;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: 50% 50%;
+      background-color: vars.$light_grey;
+      background-blend-mode: multiply;
+      @include mx.sm {
+        min-height: 10em;
+      }
+    }
+    .content {
+      display: flex;
+      flex-grow: 1;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 0.5em;
+      h3 {
+        display: flex;
+        flex: 1;
+        align-items: center;
+      }
+
+      @include mx.h3;
+      @include mx.md {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .contentInfo {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex: 2;
+        gap: 1em;
+        @include mx.p;
+        @include mx.md {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .price {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5em;
+          @include mx.p($color: vars.$medium_grey);
+          @include mx.h3;
+        }
+        .quantity {
+          display: flex;
+          align-items: center;
+          gap: 1em;
+          @include mx.h3($koef: 0.8);
+          input {
+            outline: none;
+            padding: 0.5em 1em;
+            text-align: center;
+            border: 2px solid vars.$dark_blue;
+            border-radius: 3rem;
+            @include mx.roboto($fw: 800, $fz: 1.6rem, $lh: 1.2);
+            color: vars.$dark_blue;
+            max-width: 2em;
+            @include mx.md {
+              padding: 0.5em 1em;
+            }
+          }
+        }
+      }
+    }
+  }
+  & > button {
+    display: flex;
+    min-width: 3em;
+    @include mx.md {
+      align-self: flex-start;
+      order: -1;
+    }
+  }
+}

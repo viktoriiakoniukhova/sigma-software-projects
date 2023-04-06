@@ -1,0 +1,27 @@
+@use "../../../variables" as vars;
+@use "../../../mixins" as mx;
+
+.offerWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2em;
+  padding: 7em 5em;
+  background-color: vars.$dark_blue;
+  @include mx.md {
+    padding: 2em 2em;
+  }
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    @include mx.span_i;
+    @include mx.h2($color: #fff);
+  }
+  .content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+}

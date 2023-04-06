@@ -1,0 +1,64 @@
+@use "../../variables" as vars;
+@use "../../mixins" as mx;
+
+.cartWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
+  @include mx.imgCont;
+  .imgContainer {
+    @include mx.lg {
+      img {
+        min-height: 15em;
+      }
+    }
+    @include mx.sm {
+      img {
+        object-position: center;
+      }
+    }
+  }
+
+  .cartContent {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    padding: 2em 4em;
+    background-color: vars.$biege;
+    button {
+      align-self: center;
+    }
+    .cartProductsWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+      .cartProductsList {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+      }
+      .cartProductsTotals {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1em;
+        @include mx.h3;
+      }
+    }
+
+    .emptyCart {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include mx.h3;
+      min-height: 10em;
+      .linkToProducts {
+        font-style: oblique;
+        color: vars.$green;
+        &:hover {
+          color: vars.$yellow;
+        }
+      }
+    }
+  }
+}

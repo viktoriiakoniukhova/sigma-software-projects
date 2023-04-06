@@ -1,0 +1,28 @@
+@use "../../../variables" as vars;
+@use "../../../mixins" as mx;
+
+header {
+  display: flex;
+  flex-direction: column;
+  .mainBanner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sideBanners {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2em;
+    padding: 3em 5em;
+    background-color: #fff;
+    @include mx.md {
+      flex-direction: column;
+      gap: 2em;
+      padding: 2em 5em;
+    }
+    @include mx.md {
+      padding: 2em 3em;
+    }
+  }
+}

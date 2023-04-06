@@ -1,0 +1,60 @@
+@use "../../../variables" as vars;
+@use "../../../mixins" as mx;
+
+.econisWrapper {
+  display: flex;
+  @include mx.imgCont($flex: 1);
+  @include mx.xl {
+    .imgContainer {
+      min-height: 45em;
+    }
+  }
+  @include mx.lg {
+    .imgContainer {
+      min-height: 40em;
+    }
+  }
+  @include mx.md {
+    flex-direction: column;
+    .imgContainer {
+      height: 10em;
+      flex: unset;
+      min-height: unset;
+    }
+  }
+  .contentContainer {
+    position: relative;
+    display: flex;
+    flex: 1;
+    background-color: #fff;
+    .content {
+      position: absolute;
+      top: 2em;
+      left: -10em;
+
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+      padding: 2em 4em;
+      border-radius: 3rem;
+      background-color: #fff;
+      width: 100%;
+      @include mx.xl {
+        left: -15em;
+      }
+      @include mx.md {
+        position: relative;
+        left: 0;
+        top: 0;
+      }
+      header {
+        @include mx.span_i;
+        @include mx.h2;
+      }
+      section {
+        @include mx.h3;
+        @include mx.p;
+      }
+    }
+  }
+}

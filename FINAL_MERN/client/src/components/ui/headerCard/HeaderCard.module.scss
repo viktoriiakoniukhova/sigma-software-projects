@@ -1,0 +1,120 @@
+@use "../../../variables" as vars;
+@use "../../../mixins" as mx;
+
+.headerCard {
+  display: flex;
+  position: relative;
+  img {
+    max-width: 100%;
+    object-fit: cover;
+  }
+  .headerCardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 50%;
+    @include mx.md {
+      max-width: 100%;
+    }
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    span {
+      &.base {
+        color: vars.$green;
+      }
+      &.white {
+        color: #fff;
+      }
+    }
+    h2 {
+      &.base {
+        color: vars.$dark_blue;
+      }
+      &.white {
+        color: #fff;
+      }
+    }
+    button {
+      align-self: start;
+      @include mx.sm {
+        align-self: unset;
+      }
+    }
+  }
+}
+
+.headerCardMain {
+  @include mx.lg {
+    & > img {
+      min-height: 50em;
+    }
+  }
+  @include mx.sm {
+    & > img {
+      object-position: left;
+    }
+  }
+  .headerCardContent {
+    padding: 0 5em;
+    @include mx.md {
+      padding: 0 3em;
+    }
+    span {
+      @include mx.yellowtail($fw: 400, $fz: 3.6rem, $lh: 1.2);
+      @include mx.sm {
+        text-align: center;
+      }
+    }
+    h2 {
+      @include mx.roboto($fw: 800, $fz: 7rem, $lh: 1.2);
+      @include mx.lg {
+        font-size: 5rem;
+      }
+      @include mx.sm {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.headerCardSide {
+  border-radius: 3rem;
+  img {
+    border-radius: 3rem;
+  }
+  @include mx.lg {
+    & > img {
+      min-height: 20em;
+    }
+  }
+  @include mx.sm {
+    & > img {
+      object-position: left;
+    }
+  }
+  .headerCardContent {
+    padding: 0 2em;
+    @include mx.md {
+      padding: 0 1em;
+    }
+    span {
+      @include mx.yellowtail($fw: 400, $fz: 3.6rem, $lh: 1.2);
+      @include mx.sm {
+        text-align: center;
+      }
+    }
+    h2 {
+      @include mx.roboto($fw: 800, $fz: 4rem, $lh: 1.2);
+      @include mx.xl {
+        font-size: 3.5rem;
+      }
+      @include mx.lg {
+        font-size: 3rem;
+      }
+      @include mx.sm {
+        text-align: center;
+      }
+    }
+  }
+}

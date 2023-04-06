@@ -1,0 +1,117 @@
+@use "../../../variables" as vars;
+@use "../../../mixins" as mx;
+
+footer {
+  display: flex;
+  flex-direction: column;
+  .footerHeader {
+    display: flex;
+    justify-content: space-around;
+    padding: 2em 5em;
+    gap: 1em;
+    @include mx.md {
+      flex-direction: column;
+    }
+    @include mx.sm {
+      padding: 2em 2em;
+    }
+    .footerHeaderCol {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+      flex-grow: 1;
+      header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5em;
+        min-height: 3em;
+        @include mx.h3;
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1em;
+        @include mx.p;
+        p {
+          max-width: 30ch;
+          text-align: center;
+        }
+        span {
+          font-weight: 800;
+        }
+        .socials {
+          display: flex;
+          justify-content: center;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 1em;
+        }
+      }
+      &:first-child {
+        align-items: flex-end;
+        .content {
+          align-items: flex-end;
+          p {
+            text-align: end;
+          }
+        }
+      }
+      &:last-child {
+        align-items: flex-start;
+        .content {
+          align-items: flex-start;
+          p {
+            text-align: start;
+          }
+        }
+      }
+      @include mx.md {
+        &:first-child,
+        &:last-child {
+          align-items: center;
+          .content {
+            align-items: center;
+            p {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+  .footerFooter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include mx.p;
+    padding: 1em;
+    span {
+      font-weight: 800;
+    }
+  }
+}
+
+.divider {
+  border: 1px solid vars.$medium_grey;
+  @include mx.md {
+    width: 100%;
+  }
+}
+
+.socialCircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  border-radius: 3rem;
+  background-color: vars.$light_green;
+
+  &:hover {
+    cursor: pointer;
+    background-color: vars.$light_grey;
+  }
+}

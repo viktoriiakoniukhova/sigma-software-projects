@@ -1,0 +1,55 @@
+@use "../../../variables" as vars;
+@use "../../../mixins" as mx;
+
+button {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2em;
+  border-radius: 1.6rem;
+  padding: 1em;
+  @include mx.roboto($fw: 700, $fz: 2rem, $lh: 1.2);
+  @include mx.lg {
+    font-size: 1.6rem;
+  }
+  @include mx.md {
+    font-size: 1.4rem;
+    padding: 0.7em;
+  }
+  @include mx.sm {
+    font-size: 1.2rem;
+  }
+  &.darkBlue {
+    border: 2px solid vars.$dark_blue;
+    background-color: vars.$dark_blue;
+    color: #ffffff;
+    &:hover {
+      color: vars.$dark_blue;
+      background-color: #ffffff;
+      cursor: pointer;
+    }
+  }
+  &.yellow {
+    border: 2px solid vars.$yellow;
+    background-color: vars.$yellow;
+    color: vars.$dark_blue;
+    &:hover {
+      color: vars.$yellow;
+      background-color: vars.$dark_blue;
+      border: 2px solid vars.$dark_blue;
+      cursor: pointer;
+    }
+  }
+  &.white {
+    border: 2px solid vars.$dark_blue;
+    background-color: #ffffff;
+    color: vars.$dark_blue;
+    &:hover {
+      border: 2px solid vars.$dark_blue;
+      background-color: vars.$dark_blue;
+      color: #ffffff;
+      cursor: pointer;
+    }
+  }
+}

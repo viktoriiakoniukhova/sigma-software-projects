@@ -1,0 +1,97 @@
+@use "../../../variables" as vars;
+@use "../../../mixins" as mx;
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1em;
+  padding: 1em 1.5em;
+  background-color: vars.$light_grey;
+  border-radius: 3rem;
+  min-height: 25em;
+  max-width: 12em;
+  min-width: 12em;
+  cursor: pointer;
+  & > .imgContainer {
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+    background-color: vars.$light_grey;
+    background-blend-mode: multiply;
+    border-radius: 3rem;
+    @include mx.md {
+      max-width: 15em;
+      min-width: unset;
+    }
+    @include mx.xs {
+      min-width: 10em;
+    }
+    .categoryInfo {
+      display: flex;
+      padding: 0.5em 1em;
+      text-transform: capitalize;
+      background-color: vars.$dark_blue;
+      border-radius: 3rem;
+      @include mx.p($color: #fff, $koef: 0.85);
+    }
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.5em;
+    @include mx.h3($koef: 0.6);
+    .contentInfo {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      & > .imgContainer {
+        display: flex;
+        img {
+          transform: scale(0.8);
+          max-width: 100%;
+          object-fit: contain;
+        }
+      }
+      @include mx.sm {
+        flex-direction: column;
+      }
+      .price {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        @include mx.p($color: vars.$medium_grey, $koef: 0.85);
+        @include mx.h3($koef: 0.6);
+      }
+    }
+  }
+}
+
+.productCardWrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  .productCardDetailsWrapper {
+    position: absolute;
+    min-width: calc(100vw - 4em);
+    z-index: 2;
+    @include mx.md {
+      min-width: calc(100vw - 2em);
+    }
+    @include mx.sm {
+      min-width: calc(100vw - 1em);
+    }
+  }
+}
+
+.divider {
+  border: 1px solid vars.$medium_grey;
+  @include mx.md {
+    width: 100%;
+  }
+}

@@ -1,0 +1,177 @@
+@use "../../../variables" as vars;
+@use "../../../mixins" as mx;
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0.5;
+}
+.modalWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  .modal {
+    z-index: 100;
+    background: white;
+    position: relative;
+    margin: 1.75rem auto;
+    border-radius: 3px;
+    max-width: 70%;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    .modalHeader {
+      display: flex;
+      justify-content: flex-end;
+      @include mx.md {
+        button {
+          padding: 1em 2em;
+        }
+      }
+    }
+  }
+}
+
+.productCardDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
+  .productCardDetailsContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2em;
+    @include mx.md {
+      flex-direction: column;
+    }
+    & > .imgContainer {
+      display: flex;
+      flex: 1;
+      align-items: flex-start;
+      min-height: 25em;
+      width: 100%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: 50% 50%;
+      background-color: vars.$light_grey;
+      background-blend-mode: multiply;
+      @include mx.md {
+        min-height: 20em;
+      }
+      .categoryInfo {
+        display: flex;
+        margin: 1em;
+        padding: 0.5em 1em;
+        text-transform: capitalize;
+        background-color: vars.$dark_blue;
+        border-radius: 3rem;
+        @include mx.p($color: #fff, $koef: 0.85);
+      }
+    }
+    .content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1em;
+      @include mx.h3;
+      @include mx.sm {
+        align-items: center;
+      }
+      .contentInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        @include mx.p;
+        & > .imgContainer {
+          display: flex;
+          img {
+            max-width: 100%;
+            object-fit: contain;
+          }
+        }
+        .price {
+          display: flex;
+          align-items: center;
+          gap: 1em;
+          @include mx.p($color: vars.$medium_grey);
+          @include mx.h3;
+          @include mx.sm {
+            justify-content: center;
+          }
+        }
+        .quantity {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 1em;
+          @include mx.h3($koef: 0.8);
+          @include mx.sm {
+            justify-content: center;
+          }
+          input {
+            outline: none;
+            padding: 1em 1.5em;
+            text-align: center;
+            border: 2px solid vars.$dark_blue;
+            border-radius: 3rem;
+            @include mx.roboto($fw: 800, $fz: 1.6rem, $lh: 1.2);
+            color: vars.$dark_blue;
+            max-width: 2em;
+            @include mx.md {
+              padding: 0.5em 1em;
+            }
+          }
+        }
+      }
+    }
+  }
+  .productCardDetailsInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    text-align: center;
+    @include mx.p;
+    .productCardInfoRadio {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      text-align: center;
+      gap: 1em;
+      input {
+        display: none;
+      }
+      label {
+        cursor: pointer;
+        padding: 1em 1.5em;
+        border-radius: 2rem;
+        @include mx.h3($color: vars.$dark_blue);
+        background-color: vars.$light_green;
+        &.active {
+          @include mx.h3($color: vars.$light_green);
+          background-color: vars.$dark_blue;
+        }
+      }
+    }
+  }
+}
+@include mx.md {
+  button {
+    padding: 1em 2em;
+  }
+}

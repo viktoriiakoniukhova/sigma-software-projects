@@ -1,0 +1,81 @@
+@use "../../../variables" as vars;
+@use "../../../mixins" as mx;
+
+.testimonialsWrapper {
+  position: relative;
+  display: flex;
+  @include mx.imgCont;
+  @include mx.xl {
+    min-height: 65em;
+  }
+  @include mx.lg {
+    min-height: 50em;
+  }
+  @include mx.sm {
+    min-height: 65em;
+  }
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    width: 60%;
+    @include mx.md {
+      width: 80%;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      @include mx.span_i;
+      @include mx.h2;
+    }
+    .swiperContainer {
+      display: flex;
+      //   width: 50em;
+    }
+    .testimonialsStats {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1em;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+}
+
+.divider {
+  border: 1px solid vars.$medium_grey;
+  @include mx.md {
+    width: 100%;
+  }
+}
+
+.testimonialCircle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0.5em;
+  @include mx.h2;
+  p {
+    @include mx.google-sans($fw: 600, $fz: 1.8rem, $lh: 1.3);
+    color: vars.$dark_blue;
+  }
+  background-color: vars.$light_grey;
+  border: 3px solid #fff;
+  outline: 3px solid vars.$green;
+  width: 8em;
+  height: 8em;
+  border-radius: 50%;
+  @include mx.lg {
+    width: 6em;
+    height: 6em;
+  }
+}

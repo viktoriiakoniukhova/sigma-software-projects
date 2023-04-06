@@ -1,0 +1,73 @@
+@use "../../../variables" as vars;
+@use "../../../mixins" as mx;
+
+.formOrder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2em 0;
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      padding: 2em;
+      flex-basis: calc(50% - 4em);
+
+      @include mx.h3($koef: 0.7);
+      @include mx.md {
+        padding: 1em;
+        flex-basis: calc(100% - 4em);
+      }
+      input,
+      textarea {
+        display: flex;
+        border: 1px solid vars.$green;
+        border-radius: 2rem;
+        outline: none;
+        padding: 2em;
+        @include mx.roboto($fw: 400, $fz: 1.8rem, $lh: 1.2);
+        font-style: italic;
+        color: vars.$dark_grey;
+
+        @include mx.md {
+          padding: 1em;
+        }
+        &:hover,
+        &:focus {
+          color: vars.$dark_grey;
+        }
+        &::placeholder {
+          @include mx.roboto($fw: 400, $fz: 1.8rem, $lh: 1.2);
+          font-style: italic;
+          @include mx.md {
+            font-size: 1.4rem;
+          }
+          @include mx.sm {
+            text-align: center;
+          }
+        }
+      }
+
+      textarea {
+        resize: vertical;
+      }
+      &.textareaInput {
+        flex-basis: calc(100% - 6em);
+        height: 10em;
+
+        @include mx.md {
+          height: 5em;
+          flex-basis: calc(100% - 4em);
+        }
+      }
+    }
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: vars.$dark_grey !important;
+}
