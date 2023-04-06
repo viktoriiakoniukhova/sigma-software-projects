@@ -7,7 +7,7 @@ import img3 from "../../../assets/header-3.png";
 
 export default function Header() {
   return (
-    <header>
+    <header id="home">
       <div className={styles.mainBanner}>
         <HeaderCard
           type="main"

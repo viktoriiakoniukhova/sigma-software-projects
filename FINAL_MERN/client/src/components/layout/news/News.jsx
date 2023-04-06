@@ -7,7 +7,7 @@ import Button from "../../ui/button/Button";
 
 function NewsCard({ imgUrl, h3, userName, date, text }) {
   return (
-    <div className={styles.newsCardWrapper} id="news">
+    <div className={styles.newsCardWrapper}>
       <div className={styles.imgContainer}>
         <img src={imgUrl} alt={h3} />
       </div>
@@ -31,7 +31,7 @@ function NewsCard({ imgUrl, h3, userName, date, text }) {
 
 export default function News() {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id="news">
       <header>
         <h2>Discover weekly content about organic food, & more</h2>
         <Button hasArrow={true} type="white" text="More News" />

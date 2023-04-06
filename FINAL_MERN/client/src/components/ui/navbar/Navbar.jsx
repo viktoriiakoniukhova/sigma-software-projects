@@ -11,7 +11,7 @@ function Nav() {
     <nav>
       <Link to="/">Home</Link>
       <a href="#about">About</a>
-      <a href="#pages">Pages</a>
+      <a href="#">Pages</a>
       <a href="#products">Products</a>
       <a href="#news">News</a>
     </nav>
