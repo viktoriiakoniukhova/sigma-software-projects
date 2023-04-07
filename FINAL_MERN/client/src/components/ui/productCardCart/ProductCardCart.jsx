@@ -17,12 +17,25 @@ export default function ProductCardCart({
   const hasDiscount = discount.percent !== 0;
   const priceWithDiscount = price - (price * discount.percent) / 100;
   const newImgUrl = window.location.origin + imgUrl.slice(1);
-
   const removeFromCart = () => {
     setCartProducts((prevCartList) =>
       prevCartList.filter((cartItem) => cartItem.id !== id)
     );
   };
+
+  const updateQuantity = (newQuantity) => {
+    setCartProducts((prevCartList) => {
+      return prevCartList.map((cartItem) => {
+        if (cartItem.id === id)
+          return {
+            ...cartItem,
+            orderQuantity: newQuantity,
+          };
+        else return cartItem;
+      });
+    });
+  };
+
   return (
     <div className={styles.productCardWrapper}>
       <div className={styles.productCard}>
@@ -43,7 +56,16 @@ export default function ProductCardCart({
             </div>
             <div className={styles.quantity}>
               <h3>Quantity:</h3>
-              <input type="text" placeholder={quantity} disabled />
+              <input
+                type="text"
+                placeholder={quantity}
+                onChange={(e) => updateQuantity(+e.target.value)}
+                onKeyDown={(event) => {
+                  if (!/[0-9]/.test(event.key)) {
+                    event.preventDefault();
+                  }
+                }}
+              />
             </div>
           </div>
         </div>
