@@ -4,7 +4,6 @@ import rating from "../../../assets/rating.svg";
 import currencyFilter from "../../../filters/currency.filter";
 import Button from "../button/Button";
 import styles from "./Modal.module.scss";
-import { useRef } from "react";
 
 export default function Modal({ isShowing, hide, productData }) {
   const {
@@ -20,25 +19,6 @@ export default function Modal({ isShowing, hide, productData }) {
     setCartProducts,
   } = productData;
 
-  // Close modal on click outside
-  const ref = useRef();
-
-  React.useEffect(() => {
-    const checkIfClickedOutside = (e) => {
-      if (
-        ref.current &&
-        !ref.current.contains(e.target) &&
-        !e.target.className.includes("Product")
-      ) {
-        hide();
-      }
-    };
-    document.addEventListener("click", checkIfClickedOutside);
-    return () => {
-      document.removeEventListener("click", checkIfClickedOutside);
-    };
-  }, [hide]);
-
   const hasDiscount = discount.percent !== 0;
   const [info, setInfo] = React.useState("desc"); //Radiobutton
 
@@ -49,7 +29,6 @@ export default function Modal({ isShowing, hide, productData }) {
   const updateCartProduct = () => {
     return cartProducts.map((product) => {
       const newQuantity = product.orderQuantity + orderQuantity;
-
       if (product.id === id)
         return {
           ...product,
@@ -82,15 +61,17 @@ export default function Modal({ isShowing, hide, productData }) {
 
     setOrderQuantity(1);
   };
-
   return (
     <>
       {isShowing
         ? ReactDOM.createPortal(
             <React.Fragment>
               <div className={styles.modalOverlay} />
-              <div className={styles.modalWrapper} ref={ref}>
-                <div className={styles.modal}>
+              <div className={styles.modalWrapper} tabIndex={-1} role="dialog">
+                <div
+                  className={styles.modal}
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <div className={styles.modalHeader}>
                     <Button
                       type="darkBlue"
@@ -133,6 +114,11 @@ export default function Modal({ isShowing, hide, productData }) {
                               onChange={(e) =>
                                 setOrderQuantity(+e.target.value)
                               }
+                              onKeyDown={(event) => {
+                                if (!/[0-9]/.test(event.key)) {
+                                  event.preventDefault();
+                                }
+                              }}
                             />
                             {!isEnough && <p>Sorry, not enough product.</p>}
                             <Button
