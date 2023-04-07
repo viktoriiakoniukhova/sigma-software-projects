@@ -20,6 +20,13 @@ export default function FormOrder({
     phone: "",
     message: "",
   });
+  const [errors, setErrors] = React.useState({
+    fname: "",
+    email: "",
+    address: "",
+    phone: "",
+    message: "",
+  });
 
   const orderProductsToPost = orderProducts.map((product) => {
     const discount = (product.price * product.discount.percent) / 100;
@@ -34,22 +41,58 @@ export default function FormOrder({
   });
 
   const handleSubmit = (e) => {
-    alert("Ordered by: " + formData.fname);
-    e.preventDefault();
-    const dataToPost = {
-      ...formData,
-      totalCost: totalPrice,
-      totalDiscount: totalDiscount,
-      orderProducts: orderProductsToPost,
-    };
-    Axios.post(URL, dataToPost);
-    setCartProducts([]);
-    navigate("/thanks", { replace: true });
+    const hasErrors =
+      errors.email.length ||
+      errors.fname.length ||
+      errors.phone.length ||
+      errors.address.length ||
+      errors.message.length;
+
+    if (!hasErrors) {
+      alert("Ordered by: " + formData.fname);
+      e.preventDefault();
+      const dataToPost = {
+        ...formData,
+        totalCost: totalPrice,
+        totalDiscount: totalDiscount,
+        orderProducts: orderProductsToPost,
+      };
+      Axios.post(URL, dataToPost);
+      setCartProducts([]);
+      navigate("/thanks", { replace: true });
+    }
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+    const regexp = () => {
+      switch (name) {
+        case "fname":
+          return /^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$/;
+        case "email":
+          return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        case "phone":
+          return /^\+380\d{3}\d{2}\d{2}\d{2}$/;
+        default:
+          return;
+      }
+    };
+
+    !value.match(regexp())
+      ? setErrors((prevErrorsData) => {
+          return {
+            ...prevErrorsData,
+            [name]: `${name} is not valid`,
+          };
+        })
+      : setErrors((prevErrorsData) => {
+          return {
+            ...prevErrorsData,
+            [name]: "",
+          };
+        });
+
     setFormData((prevFormData) => {
-      const { name, value } = e.target;
       return {
         ...prevFormData,
         [name]: value,
@@ -60,7 +103,7 @@ export default function FormOrder({
     <div className={styles.formOrder}>
       <form onSubmit={handleSubmit}>
         <label>
-          <h3>Full Name*</h3>
+          <h3>Full Name (english)*</h3>
           <input
             type="text"
             placeholder="Full Name"
@@ -69,6 +112,7 @@ export default function FormOrder({
             onChange={handleChange}
             required
           />
+          <span>{errors.fname}</span>
         </label>
         <label>
           <h3>Email*</h3>
@@ -80,6 +124,7 @@ export default function FormOrder({
             onChange={handleChange}
             required
           />
+          <span>{errors.email}</span>
         </label>
         <label>
           <h3>Address*</h3>
@@ -102,6 +147,7 @@ export default function FormOrder({
             onChange={handleChange}
             required
           />
+          <span>{errors.phone}</span>
         </label>
         <label className={styles.textareaInput}>
           <h3>Message</h3>
