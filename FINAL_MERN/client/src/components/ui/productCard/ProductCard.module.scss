@@ -45,6 +45,9 @@
     justify-content: flex-start;
     gap: 0.5em;
     @include mx.h3($koef: 0.6);
+    @include mx.md {
+      @include mx.h3;
+    }
     .contentInfo {
       display: flex;
       flex-direction: row;
