@@ -12,6 +12,7 @@ export default function ProductCardCart({
   name,
   price,
   quantity,
+  orderQuantity,
   setCartProducts,
 }) {
   const hasDiscount = discount.percent !== 0;
@@ -23,17 +24,35 @@ export default function ProductCardCart({
     );
   };
 
+  // const [isEnough, setIsEnough] = React.useState(true);
+
   const updateQuantity = (newQuantity) => {
-    setCartProducts((prevCartList) => {
-      return prevCartList.map((cartItem) => {
-        if (cartItem.id === id)
-          return {
-            ...cartItem,
-            orderQuantity: newQuantity,
-          };
-        else return cartItem;
-      });
-    });
+    const regex = /^[1-9][0-9]*$/;
+    if (regex.test(newQuantity)) {
+      if (newQuantity > quantity) {
+        // setIsEnough((prev) => !prev);
+        setCartProducts((prevCartList) => {
+          return prevCartList.map((cartItem) => {
+            if (cartItem.id === id)
+              return {
+                ...cartItem,
+                orderQuantity: quantity,
+              };
+            else return cartItem;
+          });
+        });
+      } else
+        setCartProducts((prevCartList) => {
+          return prevCartList.map((cartItem) => {
+            if (cartItem.id === id)
+              return {
+                ...cartItem,
+                orderQuantity: newQuantity,
+              };
+            else return cartItem;
+          });
+        });
+    }
   };
 
   return (
@@ -55,17 +74,18 @@ export default function ProductCardCart({
               <h3>{currencyFilter(priceWithDiscount)}</h3>
             </div>
             <div className={styles.quantity}>
-              <h3>Quantity:</h3>
-              <input
-                type="text"
-                placeholder={quantity}
-                onChange={(e) => updateQuantity(+e.target.value)}
-                onKeyDown={(event) => {
-                  if (!/[0-9]/.test(event.key)) {
-                    event.preventDefault();
-                  }
-                }}
-              />
+              <div className={styles.quantityData}>
+                <h3>Quantity:</h3>
+                <input
+                  type="text"
+                  placeholder={orderQuantity}
+                  value={orderQuantity}
+                  onChange={(e) => updateQuantity(+e.target.value)}
+                />
+              </div>
+              <div className={styles.stock}>
+                <p>In Stock: {quantity}</p>
+              </div>
             </div>
           </div>
         </div>

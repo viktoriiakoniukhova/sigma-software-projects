@@ -26,6 +26,13 @@ export default function Modal({ isShowing, hide, productData }) {
   const [orderQuantity, setOrderQuantity] = React.useState(1);
   const [isEnough, setIsEnough] = React.useState(true);
 
+  const updateQuantity = (newQuantity) => {
+    const regex = /^[1-9][0-9]*$/;
+    if (regex.test(newQuantity)) {
+      setOrderQuantity(newQuantity);
+    }
+  };
+
   const updateCartProduct = () => {
     return cartProducts.map((product) => {
       const newQuantity = product.orderQuantity + orderQuantity;
@@ -111,14 +118,7 @@ export default function Modal({ isShowing, hide, productData }) {
                               type="text"
                               placeholder={orderQuantity}
                               value={orderQuantity}
-                              onChange={(e) =>
-                                setOrderQuantity(+e.target.value)
-                              }
-                              onKeyDown={(event) => {
-                                if (!/[0-9]/.test(event.key)) {
-                                  event.preventDefault();
-                                }
-                              }}
+                              onChange={(e) => updateQuantity(+e.target.value)}
                             />
                             {!isEnough && <p>Sorry, not enough product.</p>}
                             <Button

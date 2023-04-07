@@ -36,7 +36,7 @@ export default function FormOrder({
       productName: product.name,
       price: priceWithDiscount,
       discount: discount,
-      quantity: product.quantity,
+      quantity: product.orderQuantity,
     };
   });
 

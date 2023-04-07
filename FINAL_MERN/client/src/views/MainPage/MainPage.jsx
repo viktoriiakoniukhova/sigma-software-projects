@@ -24,6 +24,11 @@ export default function MainPage() {
       .then((data) => setProductsData(data));
   }, []);
 
+  // Scroll to top
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const products = productsData
     .sort((product) => (product.discount.percent ? -1 : 1))
     .map((productData) => (

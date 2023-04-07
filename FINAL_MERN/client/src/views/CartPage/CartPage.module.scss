@@ -32,6 +32,10 @@
       display: flex;
       flex-direction: column;
       gap: 2em;
+      @include mx.h3;
+      h3 {
+        text-align: center;
+      }
       .cartProductsList {
         display: flex;
         flex-direction: column;

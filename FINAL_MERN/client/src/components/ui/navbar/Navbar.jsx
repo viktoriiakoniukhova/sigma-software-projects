@@ -21,7 +21,7 @@ function Nav() {
 export default function Navbar({ cartProducts }) {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const cartProductsAmount = cartProducts.reduce(
-    (accum, cur) => accum + cur.orderQuantity,
+    (accum, cur) => accum + +cur.orderQuantity,
     0
   );
   return (

@@ -30,18 +30,18 @@ export default function CartPage() {
 
   const productsInCartData = productsData.filter(function (o1) {
     return cartProducts.some(function (o2) {
-      o1.quantity = o2.orderQuantity;
+      o1.orderQuantity = o2.orderQuantity;
       return o1._id === o2.id; // return the ones with equal id
     });
   });
 
   const totalDiscount = productsInCartData.reduce(
     (accum, cur) =>
-      accum + (cur.price * cur.discount.percent * cur.quantity) / 100,
+      accum + (cur.price * cur.discount.percent * cur.orderQuantity) / 100,
     0
   );
   const totalPrice = productsInCartData.reduce(
-    (accum, cur) => accum + cur.price * cur.quantity,
+    (accum, cur) => accum + cur.price * cur.orderQuantity,
     0
   );
 
@@ -56,13 +56,11 @@ export default function CartPage() {
       name={productData.name}
       price={productData.price}
       quantity={productData.quantity}
+      orderQuantity={productData.orderQuantity}
       setCartProducts={setCartProducts}
     />
   ));
 
-  const [isCartNotEmpty, setIsCartNotEmpty] = React.useState(
-    cartProducts.length
-  );
   const [isFormHidden, setIsFormHidden] = React.useState(true);
 
   const showForm = () => {
@@ -75,19 +73,25 @@ export default function CartPage() {
         <img src={cart1} alt="cart-banner" />
       </div>
       <div className={styles.cartContent}>
-        {isCartNotEmpty ? (
+        {cartProducts.length ? (
           <div className={styles.cartProductsWrapper}>
             <div className={styles.cartProductsList}>{productsInCart}</div>
-            <div className={styles.cartProductsTotals}>
-              <h3>Total price: {currencyFilter(totalPrice)}</h3>
-              <h3>Total discount: {currencyFilter(totalDiscount)}</h3>
-            </div>
-            <Button
-              hasArrow={true}
-              type="darkBlue"
-              text="To Order"
-              onClick={showForm}
-            />
+            {totalPrice !== 0 && (
+              <div className={styles.cartProductsTotals}>
+                <h3>Total price: {currencyFilter(totalPrice)}</h3>
+                <h3>Total discount: {currencyFilter(totalDiscount)}</h3>
+              </div>
+            )}
+            {totalPrice !== 0 ? (
+              <Button
+                hasArrow={true}
+                type="darkBlue"
+                text="To Order"
+                onClick={showForm}
+              />
+            ) : (
+              <h3>You should have at least 1 product to complete an order.</h3>
+            )}
           </div>
         ) : (
           <div className={styles.emptyCart}>
